@@ -10,7 +10,7 @@ on:
     branches: [ main ]
 
 jobs:
-    Run-npm-on-Ubuntu:
+  Run-npm-on-Ubuntu:
     runs-on: ubuntu-latest
 
     strategy:
@@ -30,7 +30,7 @@ jobs:
     - run: npm test
 
 
-    Run-npm-on-Windows:
+  Run-npm-on-Windows:
     runs-on: windows-latest
 
     strategy:
