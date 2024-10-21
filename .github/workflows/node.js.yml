@@ -15,18 +15,26 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
         node-version: [18.x, 20.x, 22.x]
 
     steps:
+    #Check out the latest code from repository
+    - name: Check out the latest code from repository.
     - uses: actions/checkout@v4
+
+    #Setup Node.js environment
     - name: Setup Node.js ${{ matrix.node-version }} on Windows
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - name: Install dependencies
-      run: npm install
+
+    #Install project dependencies
+    - name: Install project dependencies
     - run: npm ci
     - run: npm run build --if-present
+
+    #Run test suite
+    - name: Run test suite
     - run: npm test
